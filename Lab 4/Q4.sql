@@ -1,0 +1,9 @@
+SELECT CUS_GENDER, COUNT(*) AS total_customers
+FROM customer
+WHERE CUS_ID IN (
+    SELECT CUS_ID
+    FROM `order`
+    WHERE ORD_AMOUNT >= 3000
+    GROUP BY CUS_ID
+)
+GROUP BY CUS_GENDER;
